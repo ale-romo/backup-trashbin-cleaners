@@ -1,0 +1,78 @@
+
+<script>
+  window.addEventListener('load', () => {
+    // set colors and descriptions for each service
+    const cards = document.querySelectorAll('.card');
+    const bg = ['#8DC63F','#226FB7', '#F36E21'];
+
+    // Add description at bottom
+    const descriptions = [
+      '1 Cleaning Per Month | billed monthly | cancel anytime',
+      '1 Cleaning Every 3 Months | billed quarterly | cancel anytime',
+      'One Time Billing'
+    ];
+
+    // Stylize cards
+    cards.forEach((card, i) => {
+      card.parentNode.classList.remove('col-sm-6');
+      card.parentNode.classList.add('col-sm-4');
+      card.parentNode.style.cssText = 'padding: 0 10px; margin: 30px 0 60px;';
+      card.style.cssText = 'box-shadow: 20px -20px 80px 0px rgb(0 0 0 / 10%); border: none; height: 100%';
+      card.innerHTML += `<p style="text-align: center; padding: 10px 20px; font-size: 18px;">${descriptions[i]}</p>`;
+    });
+
+    // Stylize content of cards
+    const headers = document.querySelectorAll('.card-header');
+    const priceNodes = document.querySelectorAll('.card h2');
+    headers.forEach((header, i) => {
+      header.style.cssText = `border: none; color: white; background-color: ${bg[i]}; text-transform: uppercase; font-size: 20px; padding: 40px 0 0`;
+      priceNodes[i].style.cssText= `color: white; background-color: ${bg[i]}; font-size: 40px; padding: 44px 0 44px;}`;
+      priceNodes[i].innerHTML = `<span style="position: relative; top: -.6em; font-size: 50%;">$</span>${priceNodes[i].innerHTML.substring(1)}<span style="font-size: 14px; display: block">FIRST BIN</span>`;
+      header.parentNode.insertBefore(priceNodes[i], header.nextSibling);
+    });
+  });
+</script>
+
+
+<script>
+  const link = document.createElement('link');
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  link.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0';
+
+  document.head.appendChild(link);
+
+  window.addEventListener('load', () => {
+    // Make container wider to match design
+    const container = document.querySelector('.col-12.col-md-10.offset-md-1.col-lg-8.offset-lg-2');
+    container.classList.remove('col-md-10', 'offset-md-1', 'col-lg-8', 'offset-lg-2');
+    container.classList.add('col-lg-10', 'offset-lg-1');
+
+    //  Set pricing for additional bins
+    const additionalPrices = ["$15", "$25", "$35"];
+
+
+    const cardBodies = document.querySelectorAll('.card-body');
+    cardBodies.forEach((cardBody, i) => {
+      cardBody.style.cssText = 'padding: 50px 0; ms-flex: 0; flex: 0; min-height: auto;';
+      cardBody.innerHTML = `<p style="font-size: 15px; display: flex; justify-content: center; column-gap: 5px; align-items: center; margin-bottom: 0;"><span class="material-symbols-outlined">check_circle</span><span>${additionalPrices[i]} each additional bin<span></p>`;
+    });
+
+    // CTA styling
+    const bg = ['#84c75b', '#F36E21', '#84c75b'];
+    const ctas = document.querySelectorAll('.card-footer a');
+    ctas.forEach((cta, i) => {
+      const minBin = document.createElement('p');
+      minBin.innerHTML = '2 bin minimum';
+      minBin.style.cssText = "margin-bottom: 10px; font-size: 30px";
+      parentElement = cta.parentElement;
+      cta.style.cssText =`border-radius: ${i === 1 ? '33px' : '28px'}; padding: ${i === 1 ? '20px 25px' : '15px'}; background-color: ${bg[i]}; border: none;`;
+      parentElement.insertBefore(minBin, cta);
+      cta.innerHTML = 'Get started';
+    });
+    // Center header
+   document.querySelector('h1').style.textAlign = 'center';
+  });
+
+
+</script>
